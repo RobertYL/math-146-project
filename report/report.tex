@@ -104,16 +104,53 @@ Let \(p_i \in C^1([0,1])^2\) be the vector valued function corresponding to the 
 
 We wish to minimize the total length of all robot paths. Define \(F\) as the total path length
 \begin{equation}
-	F(P) = \sum_{i=1}^{N} l_i = \int_0^1 \sum_{i=1}^{N} \norm{p_i'(t)} \,dt.
+	F(P) = \sum_{i=1}^{N} l_i = \int_0^1 \sum_{i=1}^{N} \norm{p_i'(t)} \,dt,
 \end{equation}
+where \(P = [p_1, \ldots, p_N]^\intercal\) is the path ensemble.
 
-We will modify the objective function in order to represent the no-collision and obstacle constraints.
+We will modify the objective function in order to represent the no-collision and obstacle constraints. As an example, consider the obstacle constraint. In order to check whether or not a robot collides with an obstacle, a function \(g\) can be defined such that it evaluates to infinity if the distance between the robot and the center of the obstacle is less than \(R\) and evaluates to 0 when not. However, \(g\) would be discontinuous and forbid the use of calculus of variations techniques.
 
-A barrier function is a function that goes to infinity as it approaches a ``barrier'' value. In this case, we wish to devise a function that goes to infinity when approached from above to act as a repulsor.
+A barrier function \(g_{d,\mu}\) is a continuous function that goes to infinity as it approaches a ``barrier'' value \(d\). A parameter \(\mu\) can be varied in order for \(g\) to approach the discontinuous form. In this case, we wish to devise a function that goes to infinity when approached from above to act as a repulsor. In this project, we will consider two types of barrier functions
+\begin{enumerate}
+	\item Log function:
+	\begin{equation}
+		g_{d,\mu}(x) = \frac{-1}{\mu} \log(x-d),
+		\quad
+		g'_{d,\mu}(x) = \frac{-1}{\mu(x-d)}.
+	\end{equation}
+	\item Inverse function:
+	\begin{equation}
+		g_{d,\mu}(x) = \frac{1}{\mu(x-d)},
+		\quad
+		g'_{d,\mu}(x) = \frac{-1}{\mu(x-d)^2}.
+	\end{equation}
+\end{enumerate}
 
-We can use a log function
+Using this barrier function we can rewrite \(F\) as
+\begin{equation}
+	F(P) = \int_0^1 \left[ \sum_{i=1}^{N} \norm{p'_i(t)} + \sum_{i,j = 1; i \neq j}^{N} g_{r,\mu_1}\left( \norm{p_i(t) - p_j(t)} \right) + \sum_{i=1}^{N} \sum_{j=1}^{M} g_{R,\mu_2}\left( \norm{p_i(t) - c_j} \right) \right] \,dt,
+\end{equation}
+and the optimization problem becomes an unconstrained optimization problem.
 
 \subsection{First-Order Necessary Conditions}
+
+To derive first-order necessary condition, we first identify the Lagrangian \(L\),
+\begin{equation}
+	L(Y,Z) = \sum_{i=1}^{N} \norm{z_i} + \sum_{i,j = 1; i \neq j}^{N} g_{r,\mu_1}\left( \norm{y_i - y_j} \right) + \sum_{i=1}^{N} \sum_{j=1}^{M} g_{R,\mu_2}\left( \norm{y_i - c_j} \right).
+\end{equation}
+
+Applying the Euler--Lagrange equation,
+\begin{align}
+	&L_{p'_{i,x}}(t) = \frac{p'_{i,x}(t)}{\norm{p'_i(t)}}
+	\quad\implies\quad
+	\frac{d}{dt}\left[ L_{p'_{i,x}}(t) \right] = \frac{p''_{i,x}(t)}{\norm{p'_i(t)}} - \frac{p'_{i,x}(t) \big( p'_i(t) \cdot p''_i(t) \big)}{\norm{p'_i(t)}^3} \\
+	&\begin{aligned}
+	L_{p_{i,x}}(t) &= \sum_{i,j=1; i \neq j}^{N} g'_{r,\mu_1}\left( \norm{p_i(t) - p_j(t)} \right) \frac{p_{i,x}(t) - p_{j,x}(t)}{\norm{p_{i,x}(t) - p_{j,x}(t)}} \\
+	&\qquad\quad+ \sum_{j=1}^{M} g'_{R,\mu_2}\left( \norm{p_i(t) - p_j(t)} \right) \frac{p_{i,x}(t) - c_{j,x}}{\norm{p_i(t) - c_j}}.
+	\end{aligned}
+\end{align}
+
+This differential equation will be used to find the optimal path ensemble.
 
 \section{Cases}
 
