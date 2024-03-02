@@ -1,0 +1,125 @@
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{stackrel}
+\usepackage{titlesec}
+\usepackage{comment}
+\usepackage{graphicx}
+
+\begin{comment}
+\usepackage[T1]{fontenc}
+\usepackage{charter}
+\usepackage[charter]{mathdesign}    
+\end{comment}
+
+\usepackage{listings}
+\usepackage{matlab-prettifier}
+
+\definecolor{light-gray}{gray}{0.95}
+\lstnewenvironment{matlab}
+    {
+    	\lstset{backgroundcolor=\color{light-gray}}
+    	\lstset{language=matlab}
+    	\lstset{style=Matlab-Pyglike}
+    	\lstset{numbers=left}
+    	\lstset{frame=single}
+    	\lstset{basicstyle=\ttfamily\footnotesize}
+    }
+    {}
+  
+% some macros
+\newcommand{\set}[1]{\{ #1 \}}
+\newcommand{\Bigset}[1]{\Big\{ #1 \Big\}}
+\newcommand{\mat}[4]{\begin{bmatrix} #1 & #2 \\ #3 & #4 \end{bmatrix}}
+\newcommand{\conj}[1]{\bar{#1}}
+%\DeclareMathOperator{\dim}{dim}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\nullity}{nullity}
+\DeclareMathOperator{\tr}{trace}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\fcn}{fcn}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\var}{var}
+%\DeclareMathOperator{\sp}{Span}
+%\DeclareMathOperator{\det}{det}
+\newcommand{\R}{\mathbb{R}}
+%\newcommand{\B}{\mathcal{B}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\renewcommand{\P}{\mathbb{P}} % for probability measure
+\renewcommand{\sp}{\text{Span}}
+%\renewcommand{\CC}{\textbf{C}}
+%\renewcommand{\S}{\mathcal{S}}
+\newcommand{\M}{\mathbb{M}}
+\newcommand{\al}{\alpha}
+\newcommand{\be}{\beta}
+\newcommand{\p}{\varphi}
+\newcommand{\ga}{\gamma}
+\newcommand{\la}{\lambda}
+\newcommand{\eps}{\varepsilon}
+\renewcommand{\th}{\theta}
+\newcommand{\sse}{\subseteq}
+\newcommand{\dd}{\, \mathrm{d}}
+\renewcommand{\d}{\mathrm{d}}
+\newcommand{\dual}{^*}
+\newcommand{\orth}{^{\perp}}
+\renewcommand{\c}{^{\text{c}}}
+\newcommand{\lV}{\lVert}
+\newcommand{\rV}{\rVert}
+\newcommand{\V}{\Vert}
+\newcommand{\lv}{\lvert}
+\newcommand{\rv}{\rvert}
+\renewcommand{\v}{\vert}
+\newcommand{\lan}{\left\langle}
+\newcommand{\ran}{\right\rangle}
+\newcommand{\dir}{\oplus}
+\newcommand{\ang}[1]{\left\langle #1 \right\rangle}
+\newcommand{\abs}[1]{\left\lvert #1 \right\rvert}
+\newcommand{\norm}[1]{\left\lVert #1 \right\rVert}
+\newcommand{\adj}{^*}
+\newcommand{\blankang}{\ang{\phantom{v},\phantom{v}}}
+\renewcommand{\i}{\sqrt{-1}}
+\newcommand{\ds}{\displaystyle}
+\newcommand{\dsum}{\displaystyle\sum}
+\newcommand{\dprod}{\displaystyle\prod}
+\DeclareMathOperator{\cis}{cis}
+\newcommand{\an}{^0}
+%\DeclareMathOperator{\inf}{inf}
+%\DeclareMathOperator{\sup}{sup}
+\renewcommand{\sp}{\,\,}
+\newcommand{\ex}{\exists \,}
+\newcommand{\fa}{\forall}
+\renewcommand{\l}{\ell}
+\newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu} % custom overline that is slightly smaller
+\newcommand{\cl}[1]{\overbar{#1}}
+\newcommand{\seq}[1]{\set{#1}_{n\geq 1}}
+\newcommand{\dcup}{\displaystyle\bigcup}
+\newcommand{\dcap}{\displaystyle\bigcap}
+\newcommand{\dliminf}{\displaystyle\liminf}
+\newcommand{\dlimsup}{\displaystyle\limsup}
+\newcommand{\dlim}{\displaystyle\lim}
+\newcommand{\ndlim}{\displaystyle\lim_{n \to \infty}}
+\newcommand{\mdlim}{\displaystyle\lim_{m \to \infty}}
+\newcommand{\Ndlim}{\displaystyle\lim_{N \to \infty}}
+\newcommand{\dint}{\displaystyle\int}
+\renewcommand{\qed}{\hfill $\square$}
+\newcommand{\evan}{$\phantom{evan}$ \qed}
+\newcommand{\kotha}{\dsum_{n=0}^{\infty}}
+\newcommand{\kothaa}{\dsum_{n=1}^{\infty}}
+\DeclareMathOperator{\sgn}{sgn}
+\newcommand{\minus}{\hspace{1pt}\texttt{\char`\\}\hspace{1pt}}
+\newcommand{\ba}{\mathbf{a}}
+\newcommand{\bb}{\mathbf{b}}
+
+\usepackage{mathrsfs}
+
+\newcommand{\Y}{\mathscr{Y}} % C^1 function vector space
+\newcommand{\D}{\mathscr{D}} % domain of functions
+
+\usepackage[symbol]{footmisc}

@@ -1,0 +1,139 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+
+\lhead{Multi-Agent Path Optimization} \rhead{\today}
+\renewcommand{\headrulewidth}{0.4pt}
+\setlength{\headheight}{13.6pt}
+
+\usepackage{csquotes}
+\usepackage{amsmath}
+
+\usepackage{graphicx}
+\graphicspath{{figures}}
+\usepackage{caption}
+
+\usepackage[linktoc=all]{hyperref}
+\usepackage[nameinlink]{cleveref}
+
+%\usepackage{biblatex}
+%\addbibresource{references.bib}
+
+\usepackage{lipsum}
+\usepackage{xcolor}
+
+\usepackage[toc,page]{appendix}
+\usepackage{tocloft}
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+
+\usepackage[numberedsection,symbols,nogroupskip,sort=none]{glossaries-extra}
+
+\glsxtrnewsymbol[description={number of robots}]{N}{\ensuremath{N}}
+\glsxtrnewsymbol[description={number of circular obstacles}]{M}{\ensuremath{M}}
+\glsxtrnewsymbol[description={initial position of the \(i\)-th robot}]{x_i}{\ensuremath{x_i}}
+\glsxtrnewsymbol[description={target position of the \(i\)-th robot}]{y_i}{\ensuremath{y_i}}
+\glsxtrnewsymbol[description={path of the \(i\)-th robot}]{p_i}{\ensuremath{p_i}}
+\glsxtrnewsymbol[description={radius or repulsive distance of robots}]{r}{\ensuremath{r}}
+\glsxtrnewsymbol[description={center of the \(j\)-th circular obstacle}]{c_j}{\ensuremath{c_j}}
+\glsxtrnewsymbol[description={radius of circular obstacles}]{R}{\ensuremath{R}}
+\glsxtrnewsymbol[description={objective function}]{F}{\ensuremath{F}}
+\glsxtrnewsymbol[description={Lagrangian function}]{L}{\ensuremath{L}}
+\glsxtrnewsymbol[description={barrier function}]{g}{\ensuremath{g}}
+
+\usepackage{enumitem}
+\setlist{  
+  listparindent=\parindent,
+  parsep=0pt,
+}
+
+\input{macros}
+
+\begin{document}
+
+\begin{titlepage}
+
+	\centering
+	\null
+	\vspace{\stretch{1}}
+	
+	{\huge \textbf{Multi-Agent Path Optimization\\using Calculus of Variations}\par}
+	\vspace{5mm}
+	{\Large \large Course Project\par
+	MATH 146 --- Methods of Applied Mathematics\par}
+	\vspace{5mm}
+	{\large \textbf{Author:} Robert Lee and Vedant Yogishwar\par
+	\textbf{Instructor:} Dr. Shiba Biswal\par}
+	
+	\vspace{\stretch{2}}
+	
+	{\large \today\par}
+
+\end{titlepage}
+
+\clearpage
+
+\tableofcontents
+
+\clearpage
+
+\begin{abstract}
+\lipsum[1-2]
+\end{abstract}
+
+\clearpage
+
+\printunsrtglossary[type=symbols,style=long,title={List of Symbols}]
+
+\section{Introduction}
+
+\section{Theory}
+
+\subsection{Problem Definition}
+
+\textcolor{red}{Add description of problem here.}
+
+Let \(p_i \in C^1([0,1])^2\) be the vector valued function corresponding to the path of the \(i\)-th robot. Then we have that \(p_i(0) = x_i\) and \(p_i(1) = y_i\). The length of the path is defined as
+\begin{equation}
+	l_i = \int_0^1 \norm{p_i'(t)} \,dt.
+\end{equation}
+
+\subsection{Objective Function}
+
+We wish to minimize the total length of all robot paths. Define \(F\) as the total path length
+\begin{equation}
+	F(P) = \sum_{i=1}^{N} l_i = \int_0^1 \sum_{i=1}^{N} \norm{p_i'(t)} \,dt.
+\end{equation}
+
+We will modify the objective function in order to represent the no-collision and obstacle constraints.
+
+A barrier function is a function that goes to infinity as it approaches a ``barrier'' value. In this case, we wish to devise a function that goes to infinity when approached from above to act as a repulsor.
+
+We can use a log function
+
+\subsection{First-Order Necessary Conditions}
+
+\section{Cases}
+
+\section{Results}
+
+\section{Discussion}
+
+\section{Conclusion}
+
+\section{Acknowledgements}
+
+
+
+%\nocite{*}
+%\printbibliography[heading={bibnumbered}]
+
+\begin{appendices}
+
+\section{MATLAB Code}
+
+\end{appendices}
+
+\end{document}
