@@ -143,14 +143,16 @@ Applying the Euler--Lagrange equation,
 \begin{align}
 	&L_{p'_{i,x}}(t) = \frac{p'_{i,x}(t)}{\norm{p'_i(t)}}
 	\quad\implies\quad
-	\frac{d}{dt}\left[ L_{p'_{i,x}}(t) \right] = \frac{p''_{i,x}(t)}{\norm{p'_i(t)}} - \frac{p'_{i,x}(t) \big( p'_i(t) \cdot p''_i(t) \big)}{\norm{p'_i(t)}^3} \\
+	\frac{d}{dt}\left[ L_{p'_{i,x}}(t) \right] = \frac{p''_{i,x}(t)}{\norm{p'_i(t)}} - \frac{p'_{i,x}(t) \big( p'_i(t) \cdot p''_i(t) \big)}{\norm{p'_i(t)}^3}
+	\label{eq:EL1} \\	
 	&\begin{aligned}
 	L_{p_{i,x}}(t) &= \sum_{i,j=1; i \neq j}^{N} g'_{r,\mu_1}\left( \norm{p_i(t) - p_j(t)} \right) \frac{p_{i,x}(t) - p_{j,x}(t)}{\norm{p_{i,x}(t) - p_{j,x}(t)}} \\
 	&\qquad\quad+ \sum_{j=1}^{M} g'_{R,\mu_2}\left( \norm{p_i(t) - p_j(t)} \right) \frac{p_{i,x}(t) - c_{j,x}}{\norm{p_i(t) - c_j}}.
 	\end{aligned}
+	\label{eq:EL2}
 \end{align}
 
-This differential equation will be used to find the optimal path ensemble.
+Setting \Cref{eq:EL1,eq:EL2} equal to each other, the differential equation formed will be used to find the optimal path ensemble.
 
 \section{Cases}
 
