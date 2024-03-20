@@ -8,9 +8,9 @@ function dudt = model_N2M1BL(t,u,cse,params)
 %              x_2;  y_2]
 %
 %   params
-%       r (1,1) - barrier parameter
-%       mu_1 (1,1) - barrier parameter
-%       mu_2 (1,1) - barrier parameter
+%       r (1,1) - robot barrier parameter
+%       mu_1 (1,1) - robot barrier parameter
+%       mu_2 (1,1) - obstacle barrier parameter
 
 N = 2;
 M = 1;
@@ -22,27 +22,25 @@ for i = 1:N
     x = u(i*4-1);
     y = u(i*4-0);
 
-    al = norm([dx,dy],2);
+    al = 0;
     be = 0;
-    ga = 0;
     for j = 1:N
         if i == j
             continue;
         end
-        de = norm([x,y]-u(j*4-1:j*4-0)',2);
-        be = be + gp(de,params.r,params.mu_1) * (x-u(j*4-1)) / de;
-        ga = ga + gp(de,params.r,params.mu_1) * (y-u(j*4-0)) / de;
+        ga = gp(norm([x;y]-u(j*4-1:j*4-0),2)^2,params.r^2,params.mu_1);
+        al = al + ga * (x-u(j*4-1));
+        be = be + ga * (y-u(j*4-0));
     end
     for j = 1:M
-        ep = norm([x,y]-cse.c(j,:),2);
-        be = be + gp(ep,cse.R,params.mu_2) * (x-cse.c(j,1)) / ep;
-        ga = ga + gp(ep,cse.R,params.mu_2) * (y-cse.c(j,2)) / ep;
+        ga = gp(norm([x,y]-cse.c(j,:),2)^2,cse.R^2,params.mu_2);
+        al = al + ga * (x-cse.c(j,1));
+        be = be + ga * (y-cse.c(j,2));
     end
 
-    ze = (al^2-dx^2)*(al^2-dy^2) - dx^2*dy^2/al^3;
     dudt(i*4-3:i*4-0) = [ ...
-            ((al^2-dy^2)*be + (dx*dy)*ga) / ze;
-            ((dx*dy)*be + (al^2-dx^2)*ga) / ze;
+            al;
+            be;
             dx;
             dy
         ];
@@ -53,9 +51,9 @@ end
 %% barrier functions
 
 function gx = g(x,d,mu)
-    gx = -log(x-d)/mu;
+    gx = 1/mu/(x-d);
 end
 
 function gxp = gp(x,d,mu)
-    gxp = -1/mu/(x-d);
+    gxp = -1/mu/((x-d)^2);
 end
