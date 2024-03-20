@@ -1,0 +1,47 @@
+\usepackage[margin=1in]{geometry}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+
+\lhead{Multi-Agent Path Optimization} \rhead{\today}
+\renewcommand{\headrulewidth}{0.4pt}
+\setlength{\headheight}{13.6pt}
+
+\usepackage{csquotes}
+\usepackage{amsmath}
+
+\usepackage{graphicx}
+\graphicspath{{figures}}
+\usepackage{caption}
+
+\usepackage[linktoc=all]{hyperref}
+\usepackage[nameinlink]{cleveref}
+
+%\usepackage{biblatex}
+%\addbibresource{references.bib}
+
+\usepackage{lipsum}
+\usepackage{xcolor}
+
+\usepackage[toc,page]{appendix}
+\usepackage{tocloft}
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+
+\usepackage{enumitem}
+\setlist{  
+	listparindent=\parindent,
+	parsep=0pt,
+}
+
+\usepackage{listings}
+\usepackage{matlab-prettifier}
+
+\definecolor{light-gray}{gray}{0.95}
+\lstnewenvironment{matlab}{
+	\lstset{backgroundcolor=\color{light-gray}}
+	\lstset{language=matlab}
+	\lstset{style=Matlab-Pyglike}
+	\lstset{numbers=left}
+	\lstset{frame=single}
+	\lstset{basicstyle=\ttfamily\footnotesize}
+}{}

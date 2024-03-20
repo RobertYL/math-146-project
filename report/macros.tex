@@ -15,21 +15,6 @@
 \usepackage{charter}
 \usepackage[charter]{mathdesign}    
 \end{comment}
-
-\usepackage{listings}
-\usepackage{matlab-prettifier}
-
-\definecolor{light-gray}{gray}{0.95}
-\lstnewenvironment{matlab}
-    {
-    	\lstset{backgroundcolor=\color{light-gray}}
-    	\lstset{language=matlab}
-    	\lstset{style=Matlab-Pyglike}
-    	\lstset{numbers=left}
-    	\lstset{frame=single}
-    	\lstset{basicstyle=\ttfamily\footnotesize}
-    }
-    {}
   
 % some macros
 \newcommand{\set}[1]{\{ #1 \}}
@@ -59,7 +44,7 @@
 \newcommand{\M}{\mathbb{M}}
 \newcommand{\al}{\alpha}
 \newcommand{\be}{\beta}
-\newcommand{\p}{\varphi}
+%\newcommand{\p}{\varphi}
 \newcommand{\ga}{\gamma}
 \newcommand{\la}{\lambda}
 \newcommand{\eps}{\varepsilon}
@@ -69,7 +54,7 @@
 \renewcommand{\d}{\mathrm{d}}
 \newcommand{\dual}{^*}
 \newcommand{\orth}{^{\perp}}
-\renewcommand{\c}{^{\text{c}}}
+%\renewcommand{\c}{^{\text{c}}}
 \newcommand{\lV}{\lVert}
 \newcommand{\rV}{\rVert}
 \newcommand{\V}{\Vert}
@@ -121,5 +106,12 @@
 
 \newcommand{\Y}{\mathscr{Y}} % C^1 function vector space
 \newcommand{\D}{\mathscr{D}} % domain of functions
+
+% for 2-d vectors
+\newcommand{\x}{\mathbf{x}}
+\newcommand{\y}{\mathbf{y}}
+\newcommand{\z}{\mathbf{z}}
+\renewcommand{\c}{\mathbf{c}}
+\newcommand{\p}{\mathbf{p}}
 
 \usepackage[symbol]{footmisc}
