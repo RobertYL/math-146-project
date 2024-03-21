@@ -1,20 +1,21 @@
-function dudt = model_N2M1BL(t,u,cse,params)
-%MODEL_N2M1BL ODE function for N = 2, M = 1, log barrier model
-%   Two robot, one obstacle, log barrier explicit ODE.
+function dudt = model_N10M1(t,u,cse,params)
+%MODEL_N10M1BL ODE function for N = 10, M = 1, inverse barrier model
+%   Ten robots, one obstacle, inverse barrier explicit ODE.
 %
-%   u (8,1) = [dx_1; dy_1;
+%   u (40,1) = [dx_1; dy_1;
 %              x_1;  y_1;
-%              dx_2; dy_2;
-%              x_2;  y_2]
+%               ...
+%              dx_10; dy_10;
+%              x_10;  y_10]
 %
 %   params
 %       r (1,1) - robot barrier parameter
 %       mu_1 (1,1) - robot barrier parameter
 %       mu_2 (1,1) - obstacle barrier parameter
 
-N = 2;
+N = 10;
 M = 1;
-dudt = zeros(8,1);
+dudt = zeros(N*4,1);
 
 for i = 1:N
     dx = u(i*4-3);
