@@ -100,8 +100,44 @@ An analogous equation can be derived w.r.t.\ its \(y\)-component by replacing \(
 
 The Euler-Lagrange equation derived in \Cref{eq:EL} provides a system of differential equations that govern the motion of each robot's path.
 
-
 \section{Cases}
+
+\subsection{Validating Obstacle Avoidance}
+
+In order to validate the transformation of the constrained optimization problem into an unconstrained one, we consider the simplest possible case that exhibits all phenomena in the system: two robots and one obstacle. It has the parameters
+\begin{align*}
+	\x_1 = (-50,-20),\,\y_1 = (50,20),\,\x_2 = (50,-20),\,\y_2 = (-50,20),\,\c_1 = (0,0),\, \text{and } R = 10.
+\end{align*}
+The initial and target positions of the two robots are placed such that if they travel in a straight line, they will cross each other at the origin and create the shape of an X. At this intersection, a circular obstacle is placed.
+
+The soft-penalty tuning parameters are set to \(\mu_1 = 10^{-3}\), \(r = 0\), and \(\mu_2 = 5 \times 10^{-4}\). We set a small robot radius and make the effect of the obstacle double that of the robots themselves. This is because the obstacle is the dominant force in the scenario.
+
+A manual ``guess-and-check'' shooting scheme is used. The initial velocity is set to aim tangent below and above for robot 1 and 2, respectively, with a magnitude of \(\sqrt{100^2 + 40^2} \approx 107.7\)---which is the distance both robots must travel if they move in a straight line. This is further tuned to produce the trajectory in \Cref{fig:n2m1-paths}.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\linewidth]{N2M1_paths}
+	\caption{Optimal trajectories for two robots and one obstacles placed in an X shape. The trajectories were found by a manual shooting scheme.}
+	\label{fig:n2m1-paths}
+\end{figure}
+
+A shooting scheme algorithm that used the secant method was attempted, but convergence did not occur due to the sensitivity of the barrier function used. A small change in initial condition could result in the trajectory hitting the obstacle, which would cause \texttt{ode45} to fail and terminate early---before reaching time \(t = 1\).
+
+\subsection{More Robots}
+
+Due to the sensitivity of obstacles, we decided to investigate the efficacy of the secant method with only robot repulsion. 10 robots were used in the first case and their initial and target positions were uniformly and randomly placed within the cell \([-100,100] \times [-100,100]\).
+
+\textcolor{red}{Perhaps describe the secant method more in depth in the theory section before this.} As the secant method must be seeded by two initial guesses, the following scheme was used. For the first initial guess, a velocity direction was chosen, for each robot, uniformly at random from \(0\) to \(2\pi\). The magnitude of its initial velocity was set to the distance between its initial position and target position. The second initial guess perturbed each robot's velocity direction by up to 1 degree. This was chosen as it would allow for a relatively smooth approximation of the derivative, as opposed to two diametric initial velocity guesses.
+
+50 iterations were used to find the optimal trajectory shown in \Cref{fig:n10m0-paths}.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\linewidth]{N10M0_paths}
+	\caption{Optimal trajectories for 10 robots and no obstacles placed uniformly at random. The trajectories were found using a shooting algorithm with the secant method.}
+	\label{fig:n10m0-paths}
+\end{figure}
+
 
 \section{Results}
 
