@@ -27,7 +27,7 @@ function obj = Case(N,M,R,opts)
 
     arguments
         N (1,1) {mustBeInteger,mustBePositive} = 5
-        M (1,1) {mustBeInteger,mustBePositive} = 5
+        M (1,1) {mustBeInteger,mustBeNonnegative} = 5
         R (1,1) {mustBeNumeric,mustBePositive} = 20
         opts.MaxPos {mustBeNumeric} = 100
         opts.ObsOverlap logical = true
@@ -49,7 +49,7 @@ function obj = Case(N,M,R,opts)
             while 1
                 obj.c(i,:) = (rand(1,2)-0.5)*2*obj.opts.MaxPos;
                 if i == 1 || min(vecnorm(obj.c(1:i-1,:)-obj.c(i,:),2,2)) ...
-                        > obj.R*2
+                        > obj.R
                     break
                 end
             end
@@ -61,15 +61,15 @@ function obj = Case(N,M,R,opts)
     for i = 1:N
         while 1
             obj.x(i,:) = (rand(1,2)-0.5)*2*obj.opts.MaxPos;
-            if i == 1 || min(vecnorm(obj.c-obj.x(i,:),2,2)) ...
-                    > obj.R*2
+            if M == 0 || min(vecnorm(obj.c-obj.x(i,:),2,2)) ...
+                    > obj.R
                 break
             end
         end
         while 1
             obj.y(i,:) = (rand(1,2)-0.5)*2*obj.opts.MaxPos;
-            if i == 1 || min(vecnorm(obj.c-obj.y(i,:),2,2)) ...
-                    > obj.R*2
+            if M == 0 || min(vecnorm(obj.c-obj.y(i,:),2,2)) ...
+                    > obj.R
                 break
             end
         end

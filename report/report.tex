@@ -145,7 +145,7 @@ As the secant method must be seeded by two initial guesses, the following scheme
 \begin{figure}
 	\centering
 	\includegraphics[width=0.75\linewidth]{N10M0_paths_zoom}
-	\caption{The region \([20,60] \times [-30,10]\) in \Cref{fig:n10m0-paths}. The curvature of the path can clearly be seen.}
+	\caption{The region \([20,60] \times [-30,10]\) in \Cref{fig:n10m0-paths}. The curvature of the path can clearly be seen from two target positions.}
 	\label{fig:n10m0-paths-zoom}
 \end{figure}
 
@@ -162,18 +162,73 @@ The convergence of the secant method can be seen in \Cref{fig:n10m0-t-err}. A hi
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.6\linewidth]{N10M0_p_err}
+	\includegraphics[width=0.5\linewidth]{N10M0_p_err}
 	\caption{A log-polar graph of all target position errors for 10 robots.}
 	\label{fig:n10m0-p-err}
 \end{figure}
 
-\section{Results}
+\clearpage
+
+\subsection{Even More Robots!}
+
+These same steps were repeated for 30 and 60 robots; their optimal trajectories, convergence of their total error, and their distribution of target position errors can be found in \Cref{fig:n30m0-paths,fig:n30m0-paths-zoom,fig:n30m0-t-err,fig:n30m0-p-err}.
+
+Relatively good convergence was found for 30 robots, but exhibited plateaus in the first 30 iterations and the last 25. All target destinations were reached within a distance of 1 and curvature in the trajectories can be seen for close initial or target position pairs.
+
+Unfortunately, due to the high dimensionality when there is 60 robots, the secant method was unable to converge, with some robots grossly overshooting their target positions by a magnitude greater than the space their restricted to. Other more robust or computationally efficient methods may be considered to combat this issue.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\linewidth]{N30M0_paths}
+	\caption{Optimal trajectories for 30 robots and no obstacles placed uniformly at random. The trajectories were found using a shooting algorithm with the secant method.}
+	\label{fig:n30m0-paths}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\linewidth]{N30M0_paths_zoom}
+	\caption{The region \([60,90] \times [-50,-20]\) in \Cref{fig:n30m0-paths}. The curvature of the path can clearly be seen from two initial positions.}
+	\label{fig:n30m0-paths-zoom}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\linewidth]{N30M0_t_err}
+	\caption{The total (sum of 30 robots) error between final trajectory position and target position for each iteration of secant method. 82 points evaluations are made as the first two initialization guesses are not included in the 80 total iterations, but their total errors are included.}
+	\label{fig:n30m0-t-err}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\linewidth]{N30M0_p_err}
+	\caption{A log-polar graph of all target position errors for 30 robots.}
+	\label{fig:n30m0-p-err}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.9\linewidth]{N60M0_paths}
+	\caption{Optimal trajectories for 60 robots and no obstacles placed uniformly at random. The trajectories were found using a shooting algorithm with the secant method.}
+	\label{fig:n60m0-paths}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\linewidth]{N60M0_t_err}
+	\caption{The total (sum of 60 robots) error between final trajectory position and target position for 80 iteration of secant method. Convergence is not seen due to high dimensionality of the search space.}
+	\label{fig:n60m0-t-err}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\linewidth]{N60M0_p_err}
+	\caption{A log-polar graph of all target position errors for 60 robots.}
+	\label{fig:n60m0-p-err}
+\end{figure}
 
 \section{Discussion}
 
 \section{Conclusion}
-
-\section{Acknowledgements}
 
 \begin{appendices}
 
