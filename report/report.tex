@@ -42,7 +42,7 @@
 
 \section{Theory}
 \underline{\textbf{The Secant Method: Basic Description}}
-In simple terms, the secant method is an iterative method that—through initial guesses—formulates a sequence of approximations layered onto each other. Based on the principles of a root-finding algorithm, the workings of this model relay the chosen initial guesses through a function (as seen in the following description) which allows the algorithm to predict the next iterative term. This term is then subjected to the same equation, formulating a recurrence relation until the desired level of accuracy is achieved. In the simple case of two initial conditions x0 and x1, the next iterative term in this model is given by 
+In simple terms, the secant method is an iterative method that—through initial guesses—formulates a sequence of approximations layered onto each other. Based on the principles of a root-finding algorithm, the workings of this model relay the chosen initial guesses through a function (as seen in the following description) which allows the algorithm to predict the next iterative term. This term is then subjected to the same equation, formulating a recurrence relation until the desired level of accuracy is achieved. In the simple case of two initial conditions x_0 and x_1, the next iterative term in this model is given by 
 \begin{equation}
 x_2 = x_1 - \frac{f(x_1) \cdot (x_1 - x_0)}{f(x_1) - f(x_0)}
 \end{equation}
