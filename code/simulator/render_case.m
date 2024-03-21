@@ -11,7 +11,9 @@ function fig = render_case(cse)
     scatter(cse.x(:,1),cse.x(:,2),'*',DisplayName="Initial Position");
     hold on;
     scatter(cse.y(:,1),cse.y(:,2),'*',DisplayName="Target Position");
-    circle(cse.c(:,1),cse.c(:,2),cse.R);
+    if cse.M
+        circle(cse.c(:,1),cse.c(:,2),cse.R);
+    end
     hold off;
 
     xlim([-cse.opts.MaxPos,cse.opts.MaxPos]);

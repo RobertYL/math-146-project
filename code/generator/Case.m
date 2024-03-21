@@ -15,7 +15,7 @@ properties
     N {mustBeInteger,mustBePositive}
     x (:,2) {mustBeNumeric}
     y (:,2) {mustBeNumeric}
-    M {mustBeInteger,mustBePositive}
+    M {mustBeInteger,mustBeNonnegative}
     R {mustBeNumeric,mustBePositive}
     c (:,2) {mustBeNumeric}
     opts

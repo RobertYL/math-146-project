@@ -8,7 +8,7 @@ N = cse.N;
 
 params.r = 0;
 params.mu_1 = 5e-3;
-params.mu_2 = 5e-4*1e7;
+params.mu_2 = 1;
 
 %% secant method
 
@@ -48,7 +48,7 @@ for iter = -1:iter_scnt
     end
 
     % sim
-    [t,u] = ode45(@(t,u) model_N30M1(t,u,cse,params),[0,1],u0);
+    [t,u] = ode45(@(t,u) model_N30M0(t,u,cse,params),[0,1],u0);
 
     p_e = zeros(2,N);
     for i = 1:N
@@ -80,15 +80,23 @@ for k = 1:N_anim
     end
     drawnow
 end
-% scatter(u(:,3),u(:,4));
-% scatter(u(:,7),u(:,8));
 hold off;
+title(sprintf("Optimal Paths of {%d} Robots",N));
+xlabel("x");
+ylabel("y");
+exportgraphics(fig_render,sprintf("../report/figs/N%dM0_paths.png",N), ...
+    Resolution=300);
 
 % robot ensemble target error
 fig_t_err = figure();
-scatter(1:size(err,2),vecnorm(err,2,1));
+scatter(1:size(err,2),sum(err,1));
 set(gca,"YScale","log");
 grid on;
+title(sprintf("Secant Method Convergence with {%d} Robots",N));
+ylabel("Target Target Position Error");
+xlabel("Iteration");
+exportgraphics(fig_t_err,sprintf("../report/figs/N%dM0_t_err.png",N), ...
+    Resolution=300);
 
 % target positional error
 fig_p_err = figure();
@@ -97,7 +105,9 @@ logr = log10(vecnorm(p_e,2,1));
 polarplot(th,logr+ceil(abs(min(logr))),'o');
 set(gca,"RTickLabel", ...
     compose("10^{%2d}",get(gca,"RTick")-ceil(abs(min(logr)))));
-
+title(sprintf("Final vs. Target Position Offset of {%d} Robots",N));
+exportgraphics(fig_p_err,sprintf("../report/figs/N%dM0_p_err.png",N), ...
+    Resolution=300);
 
 
 
