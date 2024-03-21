@@ -30,21 +30,11 @@
 
 \clearpage
 
-\begin{abstract}
-\lipsum[1-2]
-\end{abstract}
-
-\clearpage
-
 \printunsrtglossary[type=symbols,style=long,title={List of Symbols}]
-
-\section{Introduction}
 
 \section{Theory}
 
 \subsection{Problem Definition}
-
-\textcolor{red}{Add description of problem here.}
 
 Let \(\p_i \in C^1([0,1])^2\) be the vector valued function corresponding to the path of the \(i\)-th robot. Then we have that \(\p_i(0) = \x_i\) and \(\p_i(1) = \y_i\). The length of the path is defined as
 \begin{equation}
@@ -61,21 +51,13 @@ where \(P = [\p_1, \ldots, \p_N]^\intercal\) is the path ensemble.
 
 We will modify the objective function in order to represent the no-collision and obstacle constraints. As an example, consider the obstacle constraint. In order to check whether or not a robot collides with an obstacle, a function \(g\) can be defined such that it evaluates to infinity if the distance between the robot and the center of the obstacle is less than \(R\) and evaluates to 0 when not. However, \(g\) would be discontinuous and forbid the use of calculus of variations techniques.
 
-A barrier function \(g_{d,\mu}\) is a continuous function that goes to infinity as it approaches a ``barrier'' value \(d\). A parameter \(\mu\) can be varied in order for \(g\) to approach the discontinuous form. In this case, we wish to devise a function that goes to infinity when approached from above to act as a repulsor. In this project, we will consider two types of barrier functions
-\begin{enumerate}
-    \item Log function:
-    \begin{equation}
-        g_{d,\mu}(x) = \frac{-1}{\mu} \log(x-d),
-        \quad
-        g'_{d,\mu}(x) = \frac{-1}{\mu(x-d)}.
-    \end{equation}
-    \item Inverse function:
+A barrier function \(g_{d,\mu}\) is a continuous function that goes to infinity as it approaches a ``barrier'' value \(d\). A parameter \(\mu\) can be varied in order for \(g\) to approach the discontinuous form. In this case, we wish to devise a function that goes to infinity when approached from above to act as a repulsor. In this project, we will consider the inverse function barrier function:
     \begin{equation}
         g_{d,\mu}(x) = \frac{1}{\mu(x-d)},
         \quad
         g'_{d,\mu}(x) = \frac{-1}{\mu(x-d)^2}.
     \end{equation}
-\end{enumerate}
+Other barrier functions such as the log barrier could also be used.
 
 Using this barrier function we can rewrite \(F\) as
 \begin{equation}
@@ -107,6 +89,8 @@ In simple terms, the secant method is an iterative root-finding method that---th
 	x_2 = x_1 - \frac{f(x_1) \cdot (x_1 - x_0)}{f(x_1) - f(x_0)}.
 	\label{eq:secant}
 \end{equation}
+
+\clearpage
 
 \section{Cases}
 
@@ -152,8 +136,6 @@ As the secant method must be seeded by two initial guesses, the following scheme
 	\caption{The region \([20,60] \times [-30,10]\) in \Cref{fig:n10m0-paths}. The curvature of the path can clearly be seen from two target positions.}
 	\label{fig:n10m0-paths-zoom}
 \end{figure}
-
-\clearpage
 
 The convergence of the secant method can be seen in \Cref{fig:n10m0-t-err}. A high rate of convergence can been seen from iteration 0 to 10--15, from where it slows down slightly. Great convergence can be seen, with an average target position error of \(\sim 10^{-6}\) for each robot. The distribution of target position errors is shown in \Cref{fig:n10m0-p-err} with all trajectories ending less than \(10^{-5}\) from their target position.
 
@@ -230,14 +212,14 @@ Unfortunately, due to the high dimensionality when there is 60 robots, the secan
 	\label{fig:n60m0-p-err}
 \end{figure}
 
-\section{discussion}
+\section{Discussion}
+
 Throughout the workings of the model derived, an embedded factor of evaluation was to determine when the dimensionality would supersede the constraints of the model. The secant method was found to computationally fail when robots exceeded 60. As aforementioned, other dimensionally apt models may be incorporated, but their relation to the divergence in total position error as a function of convergence rates must be studied independently. The "guess and check" shooting scheme as described hitherto, for example, resulted in various other segments of the model requiring the relevant adaptations. The incorporation of the inverse function without the interactive log function was, from a mathematical standpoint, a key factor of convergence disparities. This omission, however, was critical because an elementary log function defined for our domain wouldn't tend to 0 as distance shot to infinity. 
 
 
 \section{Conclusion}
-An important takeaway during the entirety of the process is that optimal trajectories, when subjected to initial conditions, need not rely on the linearity of the optimal method set in place (in our case, the secant method). Within the discussion, the convergence of the shooting method, with high emphasis on reduction of the target position error, was subjected to curvature within the trajectories. The shooting method, though fairly iterative, was also subjected to conditions that were significantly determined by the initial conditions of our obstacles. Perhaps an introspective component of such a study hereafter would be the evolution of said trajectories with methods that relied on variation of polynomial terms. Muller's method, for example, is a tool that operates in a similar recursive manner to the secant method, but instead varies the iterative approximations using a polynomial of degree 2. When analyzed contextually with the 50 step iteration shown for the 10 robots in figure 4, an arguable evaluation is that such a method may result in a quicker rate of convergence, thus potentially fewer iterations. That being said, external factors such as high dimensionality (especially in the case of 60 robots and beyond) may force the incorporation of such tools, but their efficacy would depend heavily on the relevant quadratic extrapolation. 
 
-\clearpage
+An important takeaway during the entirety of the process is that optimal trajectories, when subjected to initial conditions, need not rely on the linearity of the optimal method set in place (in our case, the secant method). Within the discussion, the convergence of the shooting method, with high emphasis on reduction of the target position error, was subjected to curvature within the trajectories. The shooting method, though fairly iterative, was also subjected to conditions that were significantly determined by the initial conditions of our obstacles. Perhaps an introspective component of such a study hereafter would be the evolution of said trajectories with methods that relied on variation of polynomial terms. Muller's method, for example, is a tool that operates in a similar recursive manner to the secant method, but instead varies the iterative approximations using a polynomial of degree 2. When analyzed contextually with the 50 step iteration shown for the 10 robots in \Cref{fig:n10m0-t-err}, an arguable evaluation is that such a method may result in a quicker rate of convergence, thus potentially fewer iterations. That being said, external factors such as high dimensionality (especially in the case of 60 robots and beyond) may force the incorporation of such tools, but their efficacy would depend heavily on the relevant quadratic extrapolation.
 
 \begin{appendices}
 
