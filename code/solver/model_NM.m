@@ -1,20 +1,20 @@
 function dudt = model_N30M0(t,u,cse,params)
-%MODEL_N30M1BL ODE function for N = 30, M = 0, inverse barrier model
-%   Thirty robots, no obstacles, inverse barrier explicit ODE.
+%MODEL_N30M1BL ODE function for N robots, M obstacles, inverse barrier model
+%   N robots, M obstacles, inverse barrier explicit ODE.
 %
-%   u (120,1) = [dx_1; dy_1;
+%   u (4N,1) = [dx_1; dy_1;
 %              x_1;  y_1;
 %               ...
-%              dx_30; dy_30;
-%              x_30;  y_30]
+%              dx_N; dy_N;
+%              x_N;  y_N]
 %
 %   params
 %       r (1,1) - robot barrier parameter
 %       mu_1 (1,1) - robot barrier parameter
 %       mu_2 (1,1) - obstacle barrier parameter
 
-N = 30;
-M = 0;
+N = cse.N;
+M = cse.M;
 dudt = zeros(N*4,1);
 
 for i = 1:N

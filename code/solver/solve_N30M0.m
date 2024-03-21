@@ -50,7 +50,7 @@ for iter = -1:iter_scnt
     end
 
     % sim
-    [t,u] = ode45(@(t,u) model_N30M0(t,u,cse,params),[0,1],u0);
+    [t,u] = ode45(@(t,u) model_NM(t,u,cse,params),[0,1],u0);
 
     p_e = zeros(2,N);
     for i = 1:N
