@@ -15,4 +15,5 @@ All content for the report is located in the `report` folder.
 ### Contributers
 
 Robert Lee
+
 Vedant Yogishwar
