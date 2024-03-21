@@ -230,9 +230,12 @@ Unfortunately, due to the high dimensionality when there is 60 robots, the secan
 	\label{fig:n60m0-p-err}
 \end{figure}
 
-\section{Discussion}
+\section{discussion}
+Throughout the workings of the model derived, an embedded factor of evaluation was to determine when the dimensionality would supersede the constraints of the model. The secant method was found to computationally fail when robots exceeded 60. As aforementioned, other dimensionally apt models may be incorporated, but their relation to the divergence in total position error as a function of convergence rates must be studied independently. The "guess and check" shooting scheme as described hitherto, for example, resulted in various other segments of the model requiring the relevant adaptations. The incorporation of the inverse function without the interactive log function was, from a mathematical standpoint, a key factor of convergence disparities. This omission, however, was critical because an elementary log function defined for our domain wouldn't tend to 0 as distance shot to infinity. 
+
 
 \section{Conclusion}
+An important takeaway during the entirety of the process is that optimal trajectories, when subjected to initial conditions, need not rely on the linearity of the optimal method set in place (in our case, the secant method). Within the discussion, the convergence of the shooting method, with high emphasis on reduction of the target position error, was subjected to curvature within the trajectories. The shooting method, though fairly iterative, was also subjected to conditions that were significantly determined by the initial conditions of our obstacles. Perhaps an introspective component of such a study hereafter would be the evolution of said trajectories with methods that relied on variation of polynomial terms. Muller's method, for example, is a tool that operates in a similar recursive manner to the secant method, but instead varies the iterative approximations using a polynomial of degree 2. When analyzed contextually with the 50 step iteration shown for the 10 robots in figure 4, an arguable evaluation is that such a method may result in a quicker rate of convergence, thus potentially fewer iterations. That being said, external factors such as high dimensionality (especially in the case of 60 robots and beyond) may force the incorporation of such tools, but their efficacy would depend heavily on the relevant quadratic extrapolation. 
 
 \clearpage
 
