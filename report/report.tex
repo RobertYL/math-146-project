@@ -129,7 +129,7 @@ Due to the sensitivity of obstacles, we decided to investigate the efficacy of t
 
 \textcolor{red}{Perhaps describe the secant method more in depth in the theory section before this.} As the secant method must be seeded by two initial guesses, the following scheme was used. For the first initial guess, a velocity direction was chosen, for each robot, uniformly at random from \(0\) to \(2\pi\). The magnitude of its initial velocity was set to the distance between its initial position and target position. The second initial guess perturbed each robot's velocity direction by up to 1 degree. This was chosen as it would allow for a relatively smooth approximation of the derivative, as opposed to two diametric initial velocity guesses.
 
-50 iterations were used to find the optimal trajectory shown in \Cref{fig:n10m0-paths}.
+50 iterations were used to find the optimal trajectory shown in \Cref{fig:n10m0-paths}. We can see the repulsive effect between robots in the curved trajectory of the robot moving from \(\sim(-60,20)\) to \(\sim(-80,40)\), which is caused by the influence of the robot southwest of it. \Cref{fig:n10m0-paths-zoom} shows a zoomed in section of the domain where two paths cross and turn to reach the target position.
 
 \begin{figure}
 	\centering
@@ -138,6 +138,30 @@ Due to the sensitivity of obstacles, we decided to investigate the efficacy of t
 	\label{fig:n10m0-paths}
 \end{figure}
 
+\begin{figure}
+	\centering
+	\includegraphics[width=0.75\linewidth]{N10M0_paths_zoom}
+	\caption{The region \([20,60] \times [-30,10]\) in \Cref{fig:n10m0-paths}. The curvature of the path can clearly be seen.}
+	\label{fig:n10m0-paths-zoom}
+\end{figure}
+
+\clearpage
+
+The convergence of the secant method can be seen in \Cref{fig:n10m0-t-err}. A high rate of convergence can been seen from iteration 0 to 10--15, from where it slows down slightly. Great convergence can be seen, with an average target position error of \(\sim 10^{-6}\) for each robot. The distribution of target position errors is shown in \Cref{fig:n10m0-p-err} with all trajectories ending less than \(10^{-5}\) from their target position.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\linewidth]{N10M0_t_err}
+	\caption{The total (sum of 10 robots) error between final trajectory position and target position for each iteration of secant method. 52 points evaluations are made as the first two initialization guesses are not included in the 50 total iterations, but their total errors are included.}
+	\label{fig:n10m0-t-err}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.6\linewidth]{N10M0_p_err}
+	\caption{A log-polar graph of all target position errors for 10 robots.}
+	\label{fig:n10m0-p-err}
+\end{figure}
 
 \section{Results}
 

@@ -97,7 +97,7 @@ scatter(1:size(err,2),sum(err,1));
 set(gca,"YScale","log");
 grid on;
 title(sprintf("Secant Method Convergence with {%d} Robots",N));
-ylabel("Target Target Position Error");
+ylabel("Total Target Position Error");
 xlabel("Iteration");
 if save_figs
     exportgraphics(fig_t_err,sprintf("../report/figs/N%dM0_t_err.png",N), ...
