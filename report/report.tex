@@ -41,6 +41,11 @@
 \section{Introduction}
 
 \section{Theory}
+\underline{\textbf{The Secant Method: Basic Description}}
+In simple terms, the secant method is an iterative method that—through initial guesses—formulates a sequence of approximations layered onto each other. Based on the principles of a root-finding algorithm, the workings of this model relay the chosen initial guesses through a function (as seen in the following description) which allows the algorithm to predict the next iterative term. This term is then subjected to the same equation, formulating a recurrence relation until the desired level of accuracy is achieved. In the simple case of two initial conditions x0 and x1, the next iterative term in this model is given by 
+\begin{equation}
+x_2 = x_1 - \frac{f(x_1) \cdot (x_1 - x_0)}{f(x_1) - f(x_0)}
+\end{equation}
 
 \subsection{Problem Definition}
 
@@ -127,10 +132,6 @@ A shooting scheme algorithm that used the secant method was attempted, but conve
 
 Due to the sensitivity of obstacles, we decided to investigate the efficacy of the secant method with only robot repulsion. 10 robots were used in the first case and their initial and target positions were uniformly and randomly placed within the cell \([-100,100] \times [-100,100]\).
 
-In simple terms, the secant method is an iterative method that—through initial guesses—formulates a sequence of approximations layered onto each other. Based on the principles of a root-finding algorithm, the workings of this model relay the chosen initial guesses through a function (as seen in the following description) which allows the algorithm to predict the next iterative term. This term is then subjected to the same equation, formulating a recurrence relation until the desired level of accuracy is achieved. In the simple case of two initial conditions x0 and x1, the next iterative term in this model is given by 
-\begin{equation}
-x_2 = x_1 - \frac{f(x_1) \cdot (x_1 - x_0)}{f(x_1) - f(x_0)}
-\end{equation}
 As the secant method must be seeded by two initial guesses, the following scheme was used. For the first initial guess, a velocity direction was chosen, for each robot, uniformly at random from \(0\) to \(2\pi\). The magnitude of its initial velocity was set to the distance between its initial position and target position. The second initial guess perturbed each robot's velocity direction by up to 1 degree. This was chosen as it would allow for a relatively smooth approximation of the derivative, as opposed to two diametric initial velocity guesses.
 
 50 iterations were used to find the optimal trajectory shown in \Cref{fig:n10m0-paths}. We can see the repulsive effect between robots in the curved trajectory of the robot moving from \(\sim(-60,20)\) to \(\sim(-80,40)\), which is caused by the influence of the robot southwest of it. \Cref{fig:n10m0-paths-zoom} shows a zoomed in section of the domain where two paths cross and turn to reach the target position.
