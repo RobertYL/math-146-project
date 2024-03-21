@@ -1,4 +1,4 @@
-function dudt = model_N2M1BL(t,u,cse,params)
+function dudt = model_N2M1(t,u,cse,params)
 %MODEL_N2M1BL ODE function for N = 2, M = 1, inverse barrier model
 %   Two robot, one obstacle, inverse barrier explicit ODE.
 %
