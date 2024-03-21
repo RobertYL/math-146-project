@@ -41,11 +41,6 @@
 \section{Introduction}
 
 \section{Theory}
-\underline{\textbf{The Secant Method: Basic Description}}
-In simple terms, the secant method is an iterative method that—through initial guesses—formulates a sequence of approximations layered onto each other. Based on the principles of a root-finding algorithm, the workings of this model relay the chosen initial guesses through a function (as seen in the following description) which allows the algorithm to predict the next iterative term. This term is then subjected to the same equation, formulating a recurrence relation until the desired level of accuracy is achieved. In the simple case of two initial conditions x_0 and x_1, the next iterative term in this model is given by 
-\begin{equation}
-x_2 = x_1 - \frac{f(x_1) \cdot (x_1 - x_0)}{f(x_1) - f(x_0)}
-\end{equation}
 
 \subsection{Problem Definition}
 
@@ -101,9 +96,17 @@ Applying the Euler--Lagrange equation w.r.t.\ the \(x\)-component of the \(i\)-t
 \end{equation}
 An analogous equation can be derived w.r.t.\ its \(y\)-component by replacing \(x\) with \(y\).
 
-\subsection{Differential Equation}
+\subsection{Shooting Method}
 
-The Euler-Lagrange equation derived in \Cref{eq:EL} provides a system of differential equations that govern the motion of each robot's path.
+The Euler-Lagrange equation derived in \Cref{eq:EL} provides a system of differential equations that govern the motion of each robot's path. In order to recover the optimal trajectory, we must solve the boundary-value problem. One method to do so is known as the shooting method, where we guess the unknown initial conditions of the differential equation, propagate it and compare the final value to the boundary condition, and repeat until our initial condition results in the appropriate boundary value. This can be reformulated as a root-finding problem.
+
+\subsection{The Secant Method}
+
+In simple terms, the secant method is an iterative root-finding method that---through initial guesses---formulates a sequence of approximations layered onto each other. This method relays the chosen initial guesses through a function (see \Cref{eq:secant}) which allows the algorithm to predict the next iterative term. This term is then subjected to the same equation, formulating a recurrence relation until the desired level of accuracy is achieved. In the simple case of two initial conditions \(x_0\) and \(x_1\), the next iterative term in this model is given by 
+\begin{equation}
+	x_2 = x_1 - \frac{f(x_1) \cdot (x_1 - x_0)}{f(x_1) - f(x_0)}.
+	\label{eq:secant}
+\end{equation}
 
 \section{Cases}
 
